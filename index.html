@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>今日の5問｜1週間分ジェネレーター</title>
+<style>
+body.locked .app,body.locked .paper{display:none!important}.gate{min-height:100dvh;display:flex;justify-content:center;align-items:center;padding:20px;background:#edf4f7}.gate-card{width:min(100%,420px);background:white;padding:32px;border-radius:20px;box-shadow:0 12px 45px #21384722}.gate-card label{display:block;margin:18px 0 8px;font-weight:bold}.gate-card input{width:100%;border:1px solid #b7c9d1;border-radius:9px;padding:13px;font-size:18px}.gate-card button{width:100%;margin-top:16px}.gate-error{color:#b42318!important;min-height:20px;margin:9px 0 0}.range-wrap{padding:6px 7px 2px}.range-bar{position:relative;height:48px;touch-action:none;margin:0 18px}.range-track,.range-fill{position:absolute;top:20px;height:8px;border-radius:20px}.range-track{left:0;right:0;background:#d6e3e8}.range-fill{background:#187b83}.range-handle{position:absolute;top:6px;width:36px;height:36px;border-radius:50%;border:3px solid #fff;background:#187b83;box-shadow:0 2px 8px #0003;transform:translateX(-50%);touch-action:none;cursor:grab}.range-handle:focus-visible{outline:3px solid #e09b13}.range-ticks{display:flex;justify-content:space-between;color:#506572;font-size:11px}.range-note{font-size:12px;color:#546977;margin-top:8px}@media print{.gate{display:none!important}}
+
+:root{font-family:'Yu Gothic','Hiragino Kaku Gothic ProN',Meiryo,system-ui,sans-serif;color:#182c3d;background:#f3f6fa}*{box-sizing:border-box}body{margin:0}button,select,input{font:inherit}button{cursor:pointer}.app{max-width:1200px;margin:auto;padding:26px 20px 70px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px}.tag{color:#187b83;font-size:12px;font-weight:700;letter-spacing:.1em}h1{font-size:29px;margin:6px 0}p{color:#597082;line-height:1.7}.panel{background:#fff;border:1px solid #dde5ec;border-radius:17px;padding:22px;margin:18px 0;box-shadow:0 6px 20px #182c3d08}.settings{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:24px}.lbl{display:block;font-size:13px;font-weight:700;color:#405b6a;margin-bottom:10px}.stars{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.star{background:#f5f8fa;border:1px solid #d9e2e9;border-radius:9px;padding:10px 0;color:#354e5e;font-weight:700}.star.on{background:#187b83;color:#fff;border-color:#187b83}.big-level{font-weight:700;margin-top:10px;color:#187b83}.opts{display:flex;gap:8px;flex-wrap:wrap}.opt{border:1px solid #dae3e9;border-radius:9px;padding:10px 13px;background:#f8fafb}.opt.active{background:#e2f3f0;border-color:#187b83;color:#0f626a;font-weight:700}.checkbox{display:flex;gap:9px;align-items:center;margin:12px 0;font-size:14px}.checkbox input{accent-color:#167a81;width:18px;height:18px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}.primary{background:#187b83;color:white;border:0;border-radius:10px;padding:12px 20px;font-weight:700}.secondary{background:white;border:1px solid #afc4ce;color:#225767;border-radius:10px;padding:11px 17px;font-weight:700}.hint{font-size:12px;color:#6b7f8a}.section-title{display:flex;justify-content:space-between;align-items:center;gap:12px}.section-title h2{margin:0;font-size:20px}.mini{font-size:12px;padding:7px 10px;border:1px solid #d9e2e9;border-radius:8px;background:#fff;color:#436072}.week-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:13px;margin-top:17px}.day{background:#fff;border:1px solid #dce5ec;border-radius:14px;padding:15px;break-inside:avoid}.day-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e5ecf1;padding-bottom:10px}.day-head h3{margin:0;font-size:17px}.date-line{font-size:13px;color:#677986;margin-top:9px}.qs{list-style:none;padding:0;margin:12px 0}.qs li{display:flex;gap:8px;border-bottom:1px dashed #e2e8ec;padding:10px 0;align-items:flex-start;min-height:60px}.no{font-weight:700;color:#71858c;flex:none}.qbody{flex:1;min-width:0}.expr{font-size:16px;line-height:1.7;font-family:'Yu Gothic',Meiryo,sans-serif;overflow-wrap:anywhere}.grade{font-size:11px;color:#73818b;margin-top:3px}.swap{font-size:12px;border:0;background:#eff5f7;border-radius:7px;color:#42616d;padding:5px 7px;flex:none}.difficulty{font-size:12px;font-weight:700;color:#157781;margin-top:10px}.answer{font-size:12px;color:#24755c;margin-top:3px}.paper{display:none}.print-note{font-size:12px;color:#73838f;margin-top:12px}.foot{text-align:center;color:#748491;font-size:12px;margin-top:24px}
+@page{size:A4 landscape;margin:5mm 5mm}
+@media print{
+ html,body{margin:0!important;padding:0!important;background:#fff!important;color:#000!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ body{width:auto!important;min-height:0!important}
+ .app,.gate{display:none!important}
+ .paper{display:block!important;margin:0!important;padding:0!important}
+ .sheet{box-sizing:border-box;width:100%;height:196mm;max-height:196mm;overflow:hidden;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:2mm 1.5mm;margin:0!important;break-inside:avoid;page-break-inside:avoid;break-after:page;page-break-after:always}
+ .sheet:last-child,.sheet-back{break-after:auto;page-break-after:auto}
+ body.print-answers .sheet-back{break-after:page;page-break-after:always}
+ .quarter{box-sizing:border-box;padding:2mm 3mm;border-right:1px dashed #9ca3a8;min-width:0;min-height:0;position:relative;overflow:hidden}
+ .quarter:last-child{border-right:0}
+ .cover{display:flex;flex-direction:column;gap:9mm}
+ .cover h1{font-size:18pt;line-height:1.45;margin:11mm 0 3mm}
+ .cover .name{font-size:10pt;white-space:nowrap}
+ .cover .desc{font-size:8.6pt;line-height:1.85}
+ .cover .week{font-size:9pt}
+ .p-day-head{display:flex;align-items:baseline;justify-content:space-between;gap:1.5mm;padding-bottom:2mm;border-bottom:1px solid #333;white-space:nowrap}
+ .p-day-title{font-size:12pt;font-weight:bold}
+ .p-date{font-size:7.4pt;letter-spacing:-.02em}
+ .p-q{box-sizing:border-box;height:32mm;padding-top:3mm;border-bottom:1px dotted #ddd;overflow:hidden}
+ .p-expression{font-size:10.5pt;line-height:1.65;overflow-wrap:normal;word-break:normal}
+ .p-grade{font-size:7pt;color:#666;margin-top:2mm}
+ .p-level{position:absolute;bottom:0;font-size:8.4pt;font-weight:700}
+ .answer-sheet{display:none!important}
+ body.print-answers .answer-sheet{display:grid!important}
+ .ans-quarter h3{font-size:12pt}
+ .ans-quarter li{font-size:10pt;line-height:2.4}
+}
+@media screen and (max-width:800px){.settings{grid-template-columns:1fr}.top{align-items:flex-start}.app{padding:15px 12px}h1{font-size:24px}}
+
+/* 数式専用表示：マイナスの字形と縦型分数を統一 */
+.expr,.p-expression,.answer,.ans-quarter li {font-family: 'Times New Roman', 'Noto Serif', 'Hiragino Mincho ProN', serif;}
+.mathfrac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.1;margin:0 .12em;font-size:.93em;white-space:nowrap}
+.mathfrac .num{display:block;padding:0 .18em .08em;border-bottom:1.5px solid currentColor}
+.mathfrac .den{display:block;padding:.08em .18em 0}
+.expr,.p-expression{overflow-wrap:normal;word-break:normal}
+.p-expression{line-height:1.85}
+
+/* Ver.1.3: flexible A4 landscape, mathematical brackets */
+.math-group{display:inline-flex;align-items:center;vertical-align:middle;white-space:nowrap;line-height:1.1}
+.math-group-inner{display:inline-flex;align-items:center;white-space:nowrap}
+.math-bracket{display:inline-block;line-height:1;font-size:1.16em;font-family:'Times New Roman',serif}
+.math-group-tall>.math-bracket{font-size:2.10em;font-weight:300;transform:scaleX(.78)}
+.math-group-tall>.math-group-inner{padding:0 .025em}
+@page{size:297mm 210mm;margin:4mm 4mm}
+@media print{
+  .paper{width:100%!important}
+  .sheet{width:100%!important;height:200mm!important;max-height:200mm!important;
+     padding:2mm 1mm!important;break-after:page!important;page-break-after:always!important;
+     overflow:hidden!important}
+  .sheet:last-child{break-after:auto!important;page-break-after:auto!important}
+  .sheet-back{break-after:auto!important;page-break-after:auto!important}
+  body.print-answers .sheet-back{break-after:page!important;page-break-after:always!important}
+  .quarter{padding:2mm 2.4mm!important}
+  .p-expression{font-size:10pt!important;line-height:1.45!important}
+  .p-q{height:31.5mm!important;padding-top:3mm!important}
+  .math-group-tall>.math-bracket{font-size:1.88em!important}
+}
+
+/* Ver 1.4: single A4 landscape page per worksheet face. Never overrun page height. */
+.math-system{display:inline-flex;align-items:center;vertical-align:middle;max-width:100%;gap:.25em}
+.system-brace{font-family:serif;font-size:3.1em;font-weight:300;line-height:1;transform:scaleX(.62);transform-origin:center}
+.system-lines{display:inline-flex;flex-direction:column;align-items:flex-start;line-height:1.42;gap:.12em}
+.system-lines>span{white-space:nowrap}
+.math-sqrt{display:inline-flex;align-items:stretch;vertical-align:middle;white-space:nowrap}
+.sqrt-sign{font-family:'Times New Roman',serif;font-size:1.22em;line-height:1.1;align-self:end}
+.sqrt-body{border-top:1.4px solid currentColor;padding:.05em .09em 0;line-height:1.25}
+@page{size:A4 landscape;margin:6mm}
+@media print{
+ html,body{width:auto!important;height:auto!important;overflow:visible!important}
+ .sheet{height:185mm!important;max-height:185mm!important;min-height:0!important;width:100%!important;
+   padding:0!important;margin:0!important;overflow:hidden!important;break-inside:avoid!important;
+   page-break-inside:avoid!important;break-after:page!important;page-break-after:always!important}
+ .sheet-back{break-after:auto!important;page-break-after:auto!important}
+ body.print-answers .sheet-back{break-after:page!important;page-break-after:always!important}
+ .sheet:last-child{break-after:auto!important;page-break-after:auto!important}
+ .quarter{height:185mm!important;max-height:185mm!important;min-height:0!important;padding:1mm 2mm!important;overflow:hidden!important}
+ .p-q{height:29.2mm!important;padding-top:2.3mm!important}
+ .p-expression{font-size:9.5pt!important;line-height:1.42!important}
+ .p-grade{margin-top:1mm!important}
+ .p-level{bottom:2mm!important}
+ .p-day-head{margin-bottom:1mm!important}
+ .math-system{font-size:.86em}
+ .system-brace{font-size:2.7em}
+}
+
+/* Ver 1.5 — landscape print pagination and aligned question starts */
+@page{size:A4 landscape;margin:0}
+@media print{
+ html,body{margin:0!important;padding:0!important;width:297mm!important;height:auto!important}
+ .paper{display:block!important;width:297mm!important;margin:0!important;padding:0!important}
+ .sheet,.sheet-front,.sheet-back{box-sizing:border-box!important;width:277mm!important;height:162mm!important;max-height:162mm!important;min-height:0!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;padding:0!important;margin:8mm 10mm 0!important;overflow:visible!important;break-inside:avoid!important;page-break-inside:avoid!important;break-after:page!important;page-break-after:always!important}
+ .sheet-back{break-after:auto!important;page-break-after:auto!important}
+ body.print-answers .sheet-back{break-after:page!important;page-break-after:always!important}
+ .sheet:last-child{break-after:auto!important;page-break-after:auto!important}
+ .answer-sheet{display:none!important}body.print-answers .answer-sheet{display:grid!important}
+ .quarter{box-sizing:border-box!important;height:162mm!important;max-height:162mm!important;min-height:0!important;min-width:0!important;padding:1.5mm 2.5mm!important;overflow:hidden!important;position:relative!important}
+ .p-day-head{box-sizing:border-box!important;height:10mm!important;display:flex!important;align-items:center!important;padding:0 0 1mm!important;margin:0!important}
+ .p-q{box-sizing:border-box!important;display:block!important;height:26mm!important;min-height:26mm!important;max-height:26mm!important;margin:0!important;padding:2mm 0 0!important;overflow:hidden!important}
+ .p-expression{display:flex!important;align-items:flex-start!important;gap:.8mm!important;margin:0!important;padding:0!important;line-height:1.3!important;font-size:9.3pt!important;min-height:5mm!important}
+ .p-num{display:block!important;flex:0 0 4.5mm!important;line-height:1.45!important}
+ .p-math{display:block!important;min-width:0!important;max-width:100%!important;line-height:1.3!important}
+ .p-grade{margin-top:1.2mm!important;line-height:1.1!important}
+ .p-level{position:absolute!important;bottom:3mm!important;left:2.5mm!important;font-size:8pt!important;margin:0!important}
+ .math-system{vertical-align:top!important}
+}
+</style></head><body class="locked">
+<div class="gate" id="gate"><form class="gate-card" id="gateForm"><div class="tag">JUKU PRINT STUDIO</div><h1>今日の5問</h1><p>利用するにはパスワードを入力してください。</p><label for="passwordInput">パスワード</label><input id="passwordInput" type="password" autocomplete="current-password" required><button class="primary" type="submit">サイトを開く</button><p class="gate-error" id="gateError" role="alert" aria-live="polite"></p></form></div>
+<div class="app"><div class="top"><div><div class="tag">JUKU PRINT STUDIO</div><h1>今日の5問 <span style="color:#187b83">/ 1週間分</span></h1><p>中学数学の計算問題を35問自動生成。問題も解答も無料、インターネット接続なしで使えます。</p></div><div aria-hidden="true" style="font-size:42px">✎</div></div>
+<div class="panel"><div class="settings"><div><span class="lbl">難易度の範囲（星1〜10）</span><div class="range-wrap"><div class="range-bar" id="rangeBar"><div class="range-track"></div><div class="range-fill" id="rangeFill"></div><div class="range-handle" id="minHandle" role="slider" tabindex="0" aria-label="難易度の下限" aria-valuemin="1" aria-valuemax="10" aria-valuenow="2"></div><div class="range-handle" id="maxHandle" role="slider" tabindex="0" aria-label="難易度の上限" aria-valuemin="1" aria-valuemax="10" aria-valuenow="3"></div></div><div class="range-ticks"><span>★1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>★10</span></div></div><div class="big-level" id="levelLabel">★2 〜 ★3</div><div class="range-note">2つの丸を左右に動かすと出題範囲を変更できます。各問ごとに範囲内の難易度を抽選します。</div></div>
+<div><span class="lbl">出題学年</span><div class="opts" id="scope"><button class="opt active" data-val="all">中1〜中3</button><button class="opt" data-val="1">中1中心</button><button class="opt" data-val="12">中1〜中2</button></div><label class="checkbox"><input type="checkbox" id="focus" checked>正負の数・分数・小数を重点出題</label></div>
+<div><span class="lbl">印刷オプション</span><label class="checkbox"><input type="checkbox" id="answersPrint" checked>解答を別紙に追加</label><label class="checkbox"><input type="checkbox" id="answersScreen">画面上にも解答を表示</label><div class="hint">A4横・両面印刷。印刷画面の用紙サイズはA4、倍率100%を推奨。</div></div></div>
+<div class="actions"><button class="primary" id="generate">↻ 1週間分を新しく生成</button><button class="secondary" id="print">▤ 印刷 / PDF保存</button><button class="secondary" id="download">↓ 問題と解答を保存（CSV）</button></div><div class="print-note">※ 解答を別紙に追加すると印刷は3ページです（表・裏の後に解答）。解答なしなら2ページです。印刷時は「両面印刷・短辺とじ」を選び、ブラウザの「ヘッダーとフッター」をオフにしてください。</div></div>
+<div class="section-title"><h2>生成した問題 <small style="font-size:13px;color:#84939c">全7回 × 5問</small></h2><button class="mini" id="rerollAll">すべて入れ替える ↻</button></div><div id="week" class="week-grid"></div><div class="foot">計算式と正解は同じプログラムで作成。外部API・課金・アカウント登録は不要です。</div></div>
+<div id="paper" class="paper"></div>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);let levelMin=2,levelMax=3,scope='all',week=[];
+const R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a, pick=a=>a[R(0,a.length-1)], gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a), abs=Math.abs;
+const rat=(n,d=1)=>{if(d<0){n=-n;d=-d}const g=gcd(abs(n),d)||1;return {n:n/g,d:d/g}},add=(a,b)=>rat(a.n*b.d+b.n*a.d,a.d*b.d),mul=(a,b)=>rat(a.n*b.n,a.d*b.d),div=(a,b)=>rat(a.n*b.d,a.d*b.n);
+const rstr=a=>a.d===1?String(a.n):`${a.n}/${a.d}`,dec=(x,k=1)=>{let s=(x/10**k).toFixed(k);return s.replace(/\.?0+$/,'')},signed=x=>x<0?`(${x})`:String(x);
+function randNonzero(n){let v=0;while(!v)v=R(-n,n);return v}function frac(max,negative=true){let d=R(2,max),n=R(1,max),sgn=negative?pick([-1,1]):1;return rat(sgn*n,d)}
+function simpleInt(l){let m=l<3?12:l<6?25:50;let a=randNonzero(m),b=randNonzero(m),op=pick(['+','−','×']);let v=op==='+'?a+b:op==='−'?a-b:a*b;return {q:`${signed(a)} ${op} ${signed(b)}`,a:String(v),tag:'正負の数',grade:'中1'}}
+function decimals(l){let k=l>=5?2:1;let a=randNonzero(l>=7?90:35),b=randNonzero(l>=7?90:35);let op=pick(['+','−','×']);let x=rat(a,10**k),y=rat(b,10**k);let res=op==='+'?add(x,y):op==='−'?add(x,rat(-y.n,y.d)):mul(x,y);return {q:`${signed(dec(a,k))} ${op} ${signed(dec(b,k))}`,a:rstr(res),tag:'正負の小数',grade:'中1'}}
+function fractions(l){let a=frac(l>=6?15:9),b=frac(l>=6?15:9);let op=pick(['+','−','×','÷']);let c=op==='+'?add(a,b):op==='−'?add(a,rat(-b.n,b.d)):op==='×'?mul(a,b):div(a,b);return {q:`(${rstr(a)}) ${op} (${rstr(b)})`,a:rstr(c),tag:'正負の分数',grade:'中1'}}
+function mixed(l){let a=frac(l>=7?13:8),bn=randNonzero(40),b=rat(bn,10),c=frac(l>=7?13:8),op=pick(['+','−']);let t=op==='+'?add(a,b):add(a,rat(-b.n,b.d));let res=add(t,c);return {q:`(${rstr(a)}) ${op} (${dec(bn,1)}) + (${rstr(c)})`,a:rstr(res),tag:'分数・小数の混合',grade:'中1'}}
+function multi(l){let n=l>=7?4:3;let vals=Array.from({length:n},()=>frac(l>=8?14:7));let ops=Array.from({length:n-1},()=>pick(['×','÷']));let result=vals[0];for(let i=1;i<n;i++)result=ops[i-1]==='×'?mul(result,vals[i]):div(result,vals[i]);return{q:vals.map((v,i)=>(i?` ${ops[i-1]} `:'')+`(${rstr(v)})`).join(''),a:rstr(result),tag:'分数の連続乗除',grade:'中1'}}
+function order(l){let a=randNonzero(14),b=randNonzero(12),c=randNonzero(12),plus=pick(['+','−']);let t=plus==='+'?a+b*c:a-b*c;return{q:`${signed(a)} ${plus} ${signed(b)} × ${signed(c)}`,a:String(t),tag:'四則混合',grade:'中1'}}
+function linear(l){let x=randNonzero(l>=7?13:8),a=randNonzero(l>=7?12:6),b=randNonzero(18),rhs=a*x+b;return{q:`${a===1?'':a===-1?'−':a}x ${b<0?'−':'+'} ${abs(b)} = ${rhs}`,a:`x = ${x}`,tag:'一次方程式',grade:'中1'}}
+function literal(l){let a=randNonzero(10),b=randNonzero(10),c=randNonzero(10);return{q:`${a}x ${b<0?'−':'+'} ${abs(b)}x ${c<0?'−':'+'} ${abs(c)}`,a:`${a+b===1?'':a+b===-1?'−':a+b}x ${c<0?'−':'+'} ${abs(c)}`,tag:'文字式',grade:'中1'}}
+function systems(l){let x=randNonzero(7),y=randNonzero(7),a=R(1,5),b=randNonzero(5),c=randNonzero(5),d=R(1,5);if(a*d===b*c)d+=1;return{q:`SYSTEM|${a}x ${b<0?'−':'+'} ${abs(b)}y = ${a*x+b*y}|${c}x + ${d}y = ${c*x+d*y}`,a:`x = ${x}, y = ${y}`,tag:'連立方程式',grade:'中2'}}
+function expand(l){let a=randNonzero(8),b=randNonzero(10),c=randNonzero(9);return{q:`${a}(${c}x ${b<0?'−':'+'} ${abs(b)}) を展開`,a:`${a*c}x ${a*b<0?'−':'+'} ${abs(a*b)}`,tag:'式の展開',grade:'中2'}}
+function roots(l){let a=R(2,10),b=R(2,10),c=R(2,8),coeff=a*c+b*c;return{q:`${a}√${c*c} + ${b}√${c*c}`,a:String(coeff),tag:'平方根',grade:'中3'}}
+function factor(l){let a=randNonzero(12),b=randNonzero(12);return{q:`x² ${a+b<0?'−':'+'} ${abs(a+b)}x ${a*b<0?'−':'+'} ${abs(a*b)} を因数分解`,a:`(x ${a<0?'−':'+'} ${abs(a)})(x ${b<0?'−':'+'} ${abs(b)})`,tag:'因数分解',grade:'中3'}}
+function quadratic(l){let a=randNonzero(12),b=randNonzero(12),s=a+b,p=a*b;return{q:`x² ${-s<0?'−':'+'} ${abs(s)}x ${p<0?'−':'+'} ${abs(p)} = 0`,a:`x = ${a}, ${b}`,tag:'二次方程式',grade:'中3'}}
+const generators={int:simpleInt,dec:decimals,frac:fractions,mix:mixed,multi:multi,order,linear,literal,systems,expand,roots,factor,quadratic};
+function pool(level){let p=['int','dec','frac','mix','multi','order','linear','literal'];if(scope!=='1')p.push('systems','expand');if(scope==='all')p.push('roots','factor','quadratic');if(level===1)p=p.filter(x=>['int','dec','frac'].includes(x));else if(level===2)p=p.filter(x=>['int','dec','frac','order'].includes(x));else if(level<=4)p=p.filter(x=>!['systems','roots','factor','quadratic'].includes(x));else if(level<=6)p=p.filter(x=>x!=='quadratic');return p}
+function weights(level){let pool0=pool(level);let w={int:3,dec:4,frac:4,mix:3,multi:2,order:2,linear:3,literal:2,systems:2,expand:2,roots:2,factor:2,quadratic:2};if($('focus').checked){w.dec+=6;w.frac+=6;w.mix+=5;w.multi+=4;w.int+=3}if(level>=7){w.multi+=4;w.systems+=3;w.factor+=3;w.quadratic+=3}return pool0.flatMap(k=>Array(w[k]).fill(k))}
+function makeQuestion(avoid=[]){let difficulty=R(levelMin,levelMax);let keys=weights(difficulty).filter(k=>!avoid.includes(k));if(!keys.length)keys=weights(difficulty);let key=pick(keys);let q=generators[key](difficulty);q.key=key;q.difficulty=difficulty;return q}
+function makeDay(day,prev=[]){let out=[],k=[];for(let i=0;i<5;i++){let blocked=[...k.slice(-1)];if(prev.length>=2&&prev[prev.length-1]===prev[prev.length-2])blocked.push(prev[prev.length-1]);let q=makeQuestion(blocked);let attempts=0;while((out.some(x=>x.q===q.q)||out.some(x=>x.tag===q.tag))&&attempts++<20)q=makeQuestion(blocked);out.push(q);k.push(q.key)}return out}
+function create(){week=[];let last=[];for(let i=0;i<7;i++){let day=makeDay(i,last);week.push(day);last.push(...day.map(q=>q.key))}render()}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function formatMath(value){
+  const raw=String(value).replace(/[-−]/g,'−').replace(/(^|[\s(=+−])1(?=[xy](?![a-z]))/g,'$1');
+  if(raw.startsWith('SYSTEM|')){const rows=raw.slice(7).split('|');return '<span class="math-system"><span class="system-brace">{</span><span class="system-lines">'+rows.map(x=>'<span>'+formatMath(x)+'</span>').join('')+'</span></span>';}
+  const tokens=raw.match(/\d+\/\d+|\d+(?:\.\d+)?|[(){}]|[−+×÷=]|[^\s(){}−+×÷=]+|\s+/g)||[];
+  // Remove parentheses only around simple nonnegative numeric operands.
+  // Preserve brackets surrounding negative operands when followed by multiplication/division
+  // or when they prevent ambiguous repeated signs.
+  const out=[];
+  for(let i=0;i<tokens.length;i++){
+    const t=tokens[i];
+    if(t==='('){
+      const rest=tokens.slice(i+1), close=rest.findIndex(v=>v===')');
+      if(close>=0){
+        const inside=rest.slice(0,close).filter(v=>v.trim());
+        const prev=out.filter(v=>v.trim()).slice(-1)[0]||'';
+        const next=tokens.slice(i+close+2).find(v=>v.trim())||'';
+        const simple=inside.every((v,k)=> k===0&&v==='−' || /^\d+(?:\.\d+)?(?:\/\d+)?$/.test(v)) &&
+          (inside.length===1||inside.length===2&&inside[0]==='−');
+        const isNegative=inside[0]==='−';
+        const need=isNegative && (['×','÷','−','+'].includes(prev)||['×','÷'].includes(next));
+        if(simple&&!need){out.push(...inside);i+=close+1;continue}
+      }
+    }
+    out.push(t);
+  }
+  const escaped=x=>escapeHtml(x);
+  let html='';
+  for(let i=0;i<out.length;i++){
+    const t=out[i];
+    // Tall glyphs are used only when parentheses actually enclose a fraction.
+    if(t==='('){
+      let depth=0,hasFraction=false,close=-1;
+      for(let j=i;j<out.length;j++){
+        if(out[j]==='(')depth++;
+        if(out[j]===')'&&--depth===0){close=j;break}
+        if(j>i&&out[j].includes('/'))hasFraction=true;
+      }
+      if(close!==-1){
+        const inside=out.slice(i+1,close);
+        html+='<span class="math-group'+(hasFraction?' math-group-tall':'')+'"><span class="math-bracket">(</span><span class="math-group-inner">'+formatTokens(inside,escaped)+'</span><span class="math-bracket">)</span></span>';
+        i=close;continue;
+      }
+    }
+    html+=formatTokens([t],escaped);
+  }
+  return html.replace(/(^|[\s(=+−])1(?=[xy](?![a-z]))/g,'$1').replace(/(^|[\s(=+−])−1(?=[xy](?![a-z]))/g,'$1−');
+}
+function formatTokens(tokens,escaped){
+ return tokens.map(t=>{
+   if(/^√\d+$/.test(t))return '<span class="math-sqrt"><span class="sqrt-sign">√</span><span class="sqrt-body">'+escaped(t.slice(1))+'</span></span>';
+   const m=t.match(/^(\d+)\/(\d+)$/);
+   return m?'<span class="mathfrac"><span class="num">'+m[1]+'</span><span class="den">'+m[2]+'</span></span>':escaped(t);
+ }).join('');
+}
+function render(){const show=$('answersScreen').checked;$('week').innerHTML=week.map((day,d)=>`<div class="day"><div class="day-head"><h3>第${d+1}回</h3><button class="mini" data-day="${d}">この回を再生成 ↻</button></div><div class="date-line">日付：＿＿月＿＿日（　）</div><ul class="qs">${day.map((q,i)=>`<li><span class="no">${i+1}.</span><div class="qbody"><div class="expr">${formatMath(q.q)}</div><div class="grade">${q.grade}｜${q.tag}</div>${show?`<div class="answer">答：${formatMath(q.a)}</div>`:''}</div><button class="swap" title="この問題だけ変更" data-d="${d}" data-i="${i}">↻</button></li>`).join('')}</ul><div class="difficulty">難易度範囲　★${levelMin}〜★${levelMax} / 10</div></div>`).join('');renderPaper()}
+function paperQ(day,d){return `<div class="quarter"><div class="p-day-head"><div class="p-day-title">第${d+1}回</div><div class="p-date">　月　日（　）</div></div>${day.map((q,i)=>`<div class="p-q"><div class="p-expression"><span class="p-num">${i+1}.</span><span class="p-math">${formatMath(q.q)}</span></div><div class="p-grade">${q.grade}</div></div>`).join('')}<div class="p-level">難易度範囲：★${levelMin}〜★${levelMax} / 10</div></div>`}
+function renderPaper(){const front=`<div class="quarter cover"><h1>今日の5問<br>1週間チャレンジ</h1><div class="name">名前：________________</div><div class="week">期間：　　月　　日 〜　　月　　日</div><div class="desc">毎日5問ずつ、計算に取り組みましょう。<br>途中式をていねいに書きましょう。<br>終わったら見直しをしましょう。<br><br>7回分・合計35問</div></div>`+week.slice(0,3).map((d,i)=>paperQ(d,i)).join('');const back=week.slice(3).map((d,i)=>paperQ(d,i+3)).join('');const ans=[week.slice(0,2),week.slice(2,4),week.slice(4,6),week.slice(6,7)].map((days,col)=>`<div class="quarter ans-quarter">${days.map((d,j)=>`<h3>第${[0,2,4,6][col]+j+1}回 解答</h3><ol>${d.map(q=>`<li>${formatMath(q.a)}</li>`).join('')}</ol>`).join('')}</div>`).join('');$('paper').innerHTML=`<div class="sheet sheet-front">${front}</div><div class="sheet sheet-back">${back}</div><div class="sheet answer-sheet">${ans}</div>`}
+function csv(){let rows=[['回','番号','問題','解答','学年','単元','難易度']];week.forEach((day,d)=>day.forEach((q,i)=>rows.push([d+1,i+1,q.q,q.a,q.grade,q.tag,q.difficulty])));let raw='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');let blob=new Blob([raw],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='今日の5問_1週間分.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),500)}
+function updateRange(){const minX=(levelMin-1)/9*100,maxX=(levelMax-1)/9*100;$('minHandle').style.left=minX+'%';$('maxHandle').style.left=maxX+'%';$('rangeFill').style.left=minX+'%';$('rangeFill').style.width=(maxX-minX)+'%';$('minHandle').setAttribute('aria-valuenow',levelMin);$('maxHandle').setAttribute('aria-valuenow',levelMax);$('levelLabel').textContent='★'+levelMin+' 〜 ★'+levelMax}
+function changeLimit(which,v,rerender=true){v=Math.max(1,Math.min(10,Math.round(v)));if(which==='min')levelMin=Math.min(v,levelMax);else levelMax=Math.max(v,levelMin);updateRange();if(rerender)create()}
+for(const which of ['min','max']){const h=$(which+'Handle');h.addEventListener('pointerdown',e=>{e.preventDefault();h.setPointerCapture(e.pointerId);const bar=$('rangeBar');const move=ev=>{const box=bar.getBoundingClientRect();const v=1+Math.round(Math.max(0,Math.min(1,(ev.clientX-box.left)/box.width))*9);changeLimit(which,v,false)};move(e);h.addEventListener('pointermove',move);h.addEventListener('pointerup',()=>create(),{once:true});h.addEventListener('pointercancel',()=>create(),{once:true})});h.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowDown','ArrowRight','ArrowUp','Home','End'].includes(e.key)){e.preventDefault();const v=e.key==='Home'?1:e.key==='End'?10:(which==='min'?levelMin:levelMax)+(e.key==='ArrowRight'||e.key==='ArrowUp'?1:-1);changeLimit(which,v)}})}
+updateRange();
+const PASSWORD_HASH='e418457f86d922cb4d0a45f88784e2a669c58441971658eccc99605a66196a95';
+$('gateForm').addEventListener('submit',async e=>{e.preventDefault();let input=$('passwordInput').value;let hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(input))),b=>b.toString(16).padStart(2,'0')).join('');if(hash===PASSWORD_HASH){document.body.classList.remove('locked');$('gate').remove();create();}else{$('gateError').textContent='パスワードが違います。';$('passwordInput').select()}});
+$('scope').onclick=e=>{let b=e.target.closest('[data-val]');if(!b)return;scope=b.dataset.val;document.querySelectorAll('.opt').forEach(o=>o.classList.toggle('active',o===b));create()};$('focus').onchange=create;$('answersScreen').onchange=render;$('generate').onclick=create;$('rerollAll').onclick=create;$('print').onclick=()=>{document.body.classList.toggle('print-answers',$('answersPrint').checked);window.print()};$('download').onclick=csv;$('week').onclick=e=>{let b=e.target.closest('button');if(!b)return;if(b.dataset.day!==undefined){let d=+b.dataset.day;week[d]=makeDay(d);render()}else if(b.dataset.d!==undefined){let d=+b.dataset.d,i=+b.dataset.i,q=makeQuestion(week[d].filter((_,j)=>j!==i).map(x=>x.key));let t=0;while(week[d].some((v,j)=>j!==i&&v.q===q.q)&&t++<30)q=makeQuestion();week[d][i]=q;render()}};
+</script></body></html>
